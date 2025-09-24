@@ -1,7 +1,14 @@
+import "./styles/global.css";
+import "./styles/theme.css";
+
+import { Heading } from "./components/Heading";
+import { TimerIcon } from "lucide-react";
+
 const App = () => {
   return (
     <>
-      <h1>hello world</h1>
+      <Heading>hello heading 1 <button><TimerIcon/></button></Heading>
+
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
         tempore ad animi accusantium dicta ea cupiditate unde expedita illum

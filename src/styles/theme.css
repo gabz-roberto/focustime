@@ -1,0 +1,39 @@
+/*Variáveis e temas gerais*/
+
+:root {
+  --gray-100: #f5f5f5;
+  --gray-200: #e5e5e5;
+  --gray-300: #d4d4d4;
+  --gray-400: #a3a3a3;
+  --gray-500: #737373;
+  --gray-600: #525252;
+  --gray-700: #404040;
+  --gray-800: #262626;
+  --gray-900: #171717;
+
+  --primary-light: #6265c5;
+  --primary: #4f55ef;
+  --primary-dark: #67689b;
+
+  --link-color: #604cc5;
+  --link-hover: #61569b;
+
+  --success: #23c55f;
+  --warning: #e4ad05;
+  --error: #9c1e1e;
+  --info: #0ea5e9;
+
+  --text-over-primary: #0a0f1a;
+  --text-over-primary-dark: #e6e9f0;
+  --text-over-primary-light: #0a0f1a;
+  --text-over-success: #0a0f1a;
+  --text-over-warning: #0a0f1a;
+  --text-over-error: #e6e9f0;
+  --text-over-info: #0a0f1a;
+
+  --text-default: #e6e9f0;
+  --text-muted: #aab3cc;
+
+  --disabled: #555f7d;
+  --text-disabled: #aab3cc;
+}
