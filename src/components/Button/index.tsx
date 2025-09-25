@@ -2,20 +2,25 @@ import styles from "./Button.module.css";
 
 type ButtonProps = {
   id: string;
-  label?: string;
+  label: React.ReactNode;
+  color?: "default" | "red";
 } & React.ComponentProps<"button">;
 
 export const Button = ({
   label,
   id,
-  type,
-
-  ...rest
+  color = "default",
+  ...props
 }: ButtonProps) => {
   return (
     <>
-      {label && <label htmlFor={id}>{label}</label>}
-      <button type={type} id={id} {...rest} className={styles.Button}></button>
+      <button
+        id={id}
+        {...props}
+        className={`${styles.button} ${styles[color]}`}
+      >
+        {label}
+      </button>
     </>
   );
 };

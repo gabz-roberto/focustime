@@ -1,21 +1,32 @@
-.input {
-  background: transparent;
-  padding: 0.8rem 1rem;
-  font-size: 1.6rem;
-  text-align: center;
-  outline: none;
-  color: var(--text-default);
-  border: 0.4px solid transparent;
-  border-bottom: 0.4px solid var(--primary-light);
-  transition: all 0.2s ease-in-out;
-}
+.button {
+  border: none;
 
-.input:focus {
-  border: 0.4px solid var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22rem;
+  padding: 1rem;
   border-radius: 0.8rem;
+  cursor: pointer;
+  margin: 3rem 0;
+  transition: 0.2s all ease-in-out;
 }
 
-.input:disabled {
-  border-bottom: 0.4px solid var(--disabled);
-  color: var(--text-muted);
+.button:hover {
+  filter: brightness(0.8);
+}
+
+.button svg {
+  height: 3.2rem;
+  width: 3.2rem;
+}
+
+.default {
+  background: var(--primary);
+  color: var(--text-over-primary);
+}
+
+.red {
+  background: var(--error);
+  color: var(--text-default);
 }

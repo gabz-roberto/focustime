@@ -1,3 +1,5 @@
+import { PlayCircleIcon } from "lucide-react";
+import { Button } from "./components/Button";
 import { Container } from "./components/Container";
 import { Countdown } from "./components/Countdown";
 import { Cycles } from "./components/Cycles";
@@ -7,6 +9,7 @@ import { Menu } from "./components/Menu";
 
 import "./styles/global.css";
 import "./styles/theme.css";
+import { Footer } from "./components/Footer";
 
 const App = () => {
   return (
@@ -37,9 +40,12 @@ const App = () => {
             <Cycles />
           </div>
           <div className='formSection'>
-            <button>Enviar</button>
+            <Button id='send' label={<PlayCircleIcon />} color='default' />
           </div>
         </form>
+      </Container>
+      <Container>
+        <Footer />
       </Container>
     </>
   );
