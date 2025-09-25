@@ -1,5 +1,6 @@
 import { Container } from "./components/Container";
 import { Countdown } from "./components/Countdown";
+import { Cycles } from "./components/Cycles";
 import { Input } from "./components/Input";
 import { Logo } from "./components/Logo";
 import { Menu } from "./components/Menu";
@@ -22,14 +23,18 @@ const App = () => {
       <Container>
         <form action='' id='form'>
           <div className='formSection'>
-            <Input id='task' label='Tarefa' type='text' />
+            <Input
+              id='task'
+              label='Tarefa'
+              type='text'
+              placeholder='Digite a tarefa...'
+            />
           </div>
           <div className='formSection'>
             <p>Lorem ipsum dolor sit amet.</p>
           </div>
           <div className='formSection'>
-            <p>Ciclos</p>
-            <p>0 0 0 0 0 0 0</p>
+            <Cycles />
           </div>
           <div className='formSection'>
             <button>Enviar</button>
