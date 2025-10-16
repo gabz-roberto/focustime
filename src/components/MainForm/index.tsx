@@ -2,10 +2,27 @@ import { Input } from "../Input";
 import { PlayCircleIcon } from "lucide-react";
 import { Button } from "../Button";
 import { Cycles } from "../Cycles";
+import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 
 const MainForm = () => {
+  const { setState } = useTaskContext();
+
+  const handleClick = () => {
+    setState(prevState => {
+      return {
+        ...prevState,
+        formattedSecondsRemaining: "21:00",
+      };
+    });
+  };
+
   return (
     <form action='' id='form'>
+      <div className='formSection'>
+        <button type='button' onClick={handleClick}>
+          Click
+        </button>
+      </div>
       <div className='formSection'>
         <Input
           id='task'
