@@ -15,7 +15,9 @@ const MainForm = () => {
         />
       </div>
       <div className='formSection'>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>
+          Próximo intervalo: <strong>25</strong> min
+        </p>
       </div>
       <div className='formSection'>
         <Cycles />

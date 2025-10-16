@@ -1,14 +1,15 @@
-import { useState } from "react";
 import Home from "./pages/Home";
 
 import "./styles/global.css";
 import "./styles/theme.css";
 import type { TaskStateModel } from "./models/TaskStateModel";
+import { TaskContextProvider } from "./contexts/TaskContext";
+import { useState } from "react";
 
 const initialState: TaskStateModel = {
   tasks: [],
   secondsRemaining: 0,
-  formattedSecondsRemaining: "00:00",
+  formattedSecondsRemaining: "01:00",
   activeTask: null,
   currentCicle: 0,
   config: {
@@ -21,7 +22,11 @@ const initialState: TaskStateModel = {
 const App = () => {
   const [state, setState] = useState(initialState);
 
-  return <Home state={state} setState={setState} />;
+  return (
+    <TaskContextProvider>
+      <Home />
+    </TaskContextProvider>
+  );
 };
 
 export { App };
