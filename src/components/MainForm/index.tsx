@@ -2,33 +2,65 @@ import { Input } from "../Input";
 import { PlayCircleIcon } from "lucide-react";
 import { Button } from "../Button";
 import { Cycles } from "../Cycles";
+import { useState } from "react";
+import type { TaskModel } from "../../models/TaskModel";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
+import { handleNextCycle } from "../../utils/handleNextCycle";
 
 const MainForm = () => {
-  const { setState } = useTaskContext();
+  const [taskName, setTaskName] = useState("");
+  const { state, setState } = useTaskContext();
 
-  const handleClick = () => {
+  const nextCycle = handleNextCycle(state.currentCicle);
+
+  const handleCreateNewTask = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formattedTaskName = taskName.trim();
+
+    if (!formattedTaskName) {
+      alert("O nome da tarefa não pode ser vazio.");
+      setTaskName("");
+      return;
+    }
+
+    const newTask: TaskModel = {
+      id: Date.now().toString(),
+      name: formattedTaskName,
+      startDate: Date.now(),
+      completeDate: null,
+      stoppedDate: null,
+      duration: 0,
+      type: "workTime",
+    };
+
+    const secondsRemainingInMinutes = newTask.duration * 60;
+
     setState(prevState => {
       return {
         ...prevState,
-        formattedSecondsRemaining: "21:00",
+        activeTask: newTask,
+        currentCicle: nextCycle,
+        secondsRemaining: secondsRemainingInMinutes,
+        formattedSecondsRemaining: "00:00",
+        tasks: [...prevState.tasks, newTask],
+        config: {
+          ...prevState.config,
+        },
       };
     });
   };
 
   return (
-    <form action='' id='form'>
-      <div className='formSection'>
-        <button type='button' onClick={handleClick}>
-          Click
-        </button>
-      </div>
+    <form action='' id='form' onSubmit={handleCreateNewTask}>
       <div className='formSection'>
         <Input
           id='task'
           label='Tarefa'
           type='text'
           placeholder='Digite a tarefa...'
+          value={taskName}
+          onChange={e => setTaskName(e.target.value)}
         />
       </div>
       <div className='formSection'>
