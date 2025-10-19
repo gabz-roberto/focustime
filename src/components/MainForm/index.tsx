@@ -73,9 +73,13 @@ const MainForm = () => {
           Próximo intervalo: <strong>25</strong> min
         </p>
       </div>
-      <div className='formSection'>
-        <Cycles />
-      </div>
+
+      {state.currentCicle > 0 && (
+        <div className='formSection'>
+          <Cycles />
+        </div>
+      )}
+
       <div className='formSection'>
         <Button id='send' label={<PlayCircleIcon />} color='default' />
       </div>

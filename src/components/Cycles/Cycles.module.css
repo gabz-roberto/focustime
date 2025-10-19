@@ -24,9 +24,9 @@
 .workTime {
   background-color: var(--success);
 }
-.shortPauseTime {
+.shortBreakTime {
   background-color: var(--warning);
 }
-.longPauseTime {
+.longBreakTime {
   background-color: var(--error);
 }
