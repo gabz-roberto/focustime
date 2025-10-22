@@ -8,10 +8,11 @@ import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { handleNextCycle } from "../../utils/handleNextCycle";
 import { handleNextCycleType } from "../../utils/handleNextCycleType";
 import { formatSecondsToMinutes } from "../../utils/formatSecondsToMinutes";
+import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
 
 const MainForm = () => {
   const [taskName, setTaskName] = useState("");
-  const { state, setState } = useTaskContext();
+  const { state, dispatch } = useTaskContext();
 
   const nextCycle = handleNextCycle(state.currentCicle);
   const nextCycleType = handleNextCycleType(nextCycle);
@@ -37,23 +38,7 @@ const MainForm = () => {
       type: nextCycleType,
     };
 
-    const secondsRemainingInMinutes = newTask.duration * 60;
-
-    setState(prevState => {
-      return {
-        ...prevState,
-        activeTask: newTask,
-        currentCicle: nextCycle,
-        secondsRemaining: secondsRemainingInMinutes,
-        formattedSecondsRemaining: formatSecondsToMinutes(
-          secondsRemainingInMinutes,
-        ),
-        tasks: [...prevState.tasks, newTask],
-        config: {
-          ...prevState.config,
-        },
-      };
-    });
+    dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
   };
 
   const handleStopTask = (
@@ -61,20 +46,7 @@ const MainForm = () => {
   ) => {
     event.preventDefault();
 
-    setState(prevState => {
-      return {
-        ...prevState,
-        activeTask: null,
-        secondsRemaining: 0,
-        formattedSecondsRemaining: "00:00",
-        tasks: prevState.tasks.map(task => {
-          if (prevState.activeTask && prevState.activeTask?.id === task.id) {
-            return { ...task, stoppedDate: Date.now() };
-          }
-          return task;
-        }),
-      };
-    });
+    dispatch({ type: TaskActionTypes.STOP_TASK });
   };
 
   return (
