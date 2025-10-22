@@ -1,69 +1,67 @@
-# React + TypeScript + Vite
+# FocusTime 🕒 - Sistema Pomodoro & Gestão de Tarefas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **STATUS: EM DESENVOLVIMENTO**
 
-Currently, two official plugins are available:
+FocusTime é um sistema de produtividade pessoal que combina a técnica Pomodoro
+com a gestão de tarefas. O projeto nasceu da necessidade pessoal de uma
+ferramenta robusta e eficiente para gerenciar meu tempo e organizar as tarefas
+durante os estudos para o vestibular.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Funcionalidades Principais
 
-## Expanding the ESLint configuration
+- **Ciclos Pomodoro Integrados:** Gerencie seus períodos de foco e descanso
+  (Pomodoro, Pausa Curta, Pausa Longa).
+- **Gestão de Tarefas (To-Do List):** Crie, edite e acompanhe o status de suas
+  tarefas.
+- **Tema Claro:** Opção de alternância para um visual mais confortável em
+  ambientes bem iluminados.
+- **Alta Performance com Web Workers:** O cronômetro e a lógica de tempo são
+  executados em um _Web Worker_ dedicado para garantir precisão e evitar
+  travamentos da interface (thread principal).
+- **Persistência de Dados (Cache):** As tarefas são armazenadas em cache local
+  para que você não perca seu progresso ao recarregar a página.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 💻 Tecnologias Utilizadas
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Este projeto está sendo desenvolvido utilizando um _stack_ moderno e
+performático:
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **React:** Biblioteca JavaScript para construção de interfaces de usuário.
+- **TypeScript:** Adiciona tipagem estática ao JavaScript, melhorando a
+  escalabilidade e a manutenção do código.
+- **Vite:** Ferramenta de _build_ extremamente rápida, otimizando o
+  desenvolvimento.
+- **Web Workers:** Para a execução em _background_ da lógica do cronômetro.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Como Executar Localmente (Em Desenvolvimento)
+
+### Pré-requisitos
+
+Certifique-se de ter o [Node.js](https://nodejs.org/en/) (versão 16+) e o npm ou
+yarn instalados em sua máquina.
+
+### Passos
+
+1. **Clone o repositório:**
+
+   ```bash
+   git clone [https://github.com/gabz-roberto/focustime.git](https://github.com/gabz-roberto/focustime.git)
+   cd focustime
+
+   ```
+
+2. **Instale as dependências**
+
+```bash
+npm install
+# ou
+yarn install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. **Inicie o servidor**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
+# ou
+yarn dev
 ```

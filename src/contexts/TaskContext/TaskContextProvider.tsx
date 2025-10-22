@@ -2,6 +2,7 @@ import { useEffect, useReducer } from "react";
 import { TaskContext } from "./TaskContext";
 import { initialTaskState } from "./initialTaskState";
 import { taskReducer } from "./taskReducer";
+import { TimerWorkerManager } from "../../workers/TimerWorkerManager";
 
 type TaskContextProviderProps = {
   children: React.ReactNode;
@@ -10,9 +11,21 @@ type TaskContextProviderProps = {
 export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
   const [state, dispatch] = useReducer(taskReducer, initialTaskState);
 
+  const worker = TimerWorkerManager.getInstance();
+
+  worker.onmessage(event => {
+    console.log(event.data);
+  });
+
   useEffect(() => {
-    console.log(state);
-  }, [state]);
+    if (!state.activeTask) {
+      console.log("Worker Finalizado");
+
+      worker.terminate();
+    }
+
+    worker.postMessage(state);
+  }, [state, worker]);
 
   return (
     <TaskContext.Provider value={{ state, dispatch }}>

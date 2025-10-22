@@ -7,7 +7,6 @@ import type { TaskModel } from "../../models/TaskModel";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { handleNextCycle } from "../../utils/handleNextCycle";
 import { handleNextCycleType } from "../../utils/handleNextCycleType";
-import { formatSecondsToMinutes } from "../../utils/formatSecondsToMinutes";
 import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
 
 const MainForm = () => {
@@ -16,6 +15,35 @@ const MainForm = () => {
 
   const nextCycle = handleNextCycle(state.currentCicle);
   const nextCycleType = handleNextCycleType(nextCycle);
+
+  const tipsActiveTask = {
+    workTime: (
+      <span>
+        Foco de <strong>{state.config.workTime}</strong> minutos
+      </span>
+    ),
+    shortBreakTime: (
+      <span>
+        Descanso de <strong>{state.config.shortBreakTime}</strong> minutos
+      </span>
+    ),
+    longBreakTime: <span>Descanso longo.</span>,
+  };
+
+  const tipsNoActiveTask = {
+    workTime: (
+      <span>
+        Próximo ciclo é de <strong>{state.config.workTime}</strong> minutos
+      </span>
+    ),
+    shortBreakTime: (
+      <span>
+        Próximo descanso será de <strong>{state.config.shortBreakTime}</strong>{" "}
+        minutos
+      </span>
+    ),
+    longBreakTime: <span>Próximo descanso será longo.</span>,
+  };
 
   const handleCreateNewTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -63,9 +91,8 @@ const MainForm = () => {
         />
       </div>
       <div className='formSection'>
-        <p>
-          Próximo intervalo: <strong>25</strong> min
-        </p>
+        {state.activeTask && tipsActiveTask[state.activeTask.type]}
+        {!state.activeTask && tipsNoActiveTask[nextCycleType]}
       </div>
 
       {state.currentCicle > 0 && (
