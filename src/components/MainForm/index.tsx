@@ -17,6 +17,8 @@ const MainForm = () => {
   const nextCycle = handleNextCycle(state.currentCicle);
   const nextCycleType = handleNextCycleType(nextCycle);
 
+  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || "";
+
   const tipsActiveTask = {
     workTime: (
       <span>
@@ -92,9 +94,9 @@ const MainForm = () => {
           label='Tarefa'
           type='text'
           placeholder='Digite a tarefa...'
-          value={taskName}
           onChange={e => setTaskName(e.target.value)}
           disabled={!!state.activeTask}
+          defaultValue={lastTaskName}
         />
       </div>
       <div className='formSection'>

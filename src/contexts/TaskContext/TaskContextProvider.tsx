@@ -5,13 +5,27 @@ import { taskReducer } from "./taskReducer";
 import { TimerWorkerManager } from "../../workers/TimerWorkerManager";
 import { TaskActionTypes } from "./taskActions";
 import { loadAudio } from "../../utils/loadAudio";
+import type { TaskStateModel } from "../../models/TaskStateModel";
 
 type TaskContextProviderProps = {
   children: React.ReactNode;
 };
 
 export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
-  const [state, dispatch] = useReducer(taskReducer, initialTaskState);
+  const [state, dispatch] = useReducer(taskReducer, initialTaskState, () => {
+    const storageState = localStorage.getItem("state");
+
+    if (!storageState) return initialTaskState;
+
+    const parsedStorage = JSON.parse(storageState) as TaskStateModel;
+
+    return {
+      ...parsedStorage,
+      activeTask: null,
+      secondsRemaining: 0,
+      formattedSecondsRemaining: "00:00",
+    };
+  });
   const playBeepRef = useRef<() => void | null>(null);
 
   const worker = TimerWorkerManager.getInstance();
@@ -39,11 +53,13 @@ export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
   });
 
   useEffect(() => {
-    if (!state.activeTask) {
-      console.log("Worker Finalizado");
+    localStorage.setItem("state", JSON.stringify(state));
 
+    if (!state.activeTask) {
       worker.terminate();
     }
+
+    document.title = `${state.formattedSecondsRemaining} | FocusMind`;
 
     worker.postMessage(state);
   }, [state, worker]);
