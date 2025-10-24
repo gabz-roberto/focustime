@@ -72,4 +72,15 @@
 
   --disabled: #d4d4d4;
   --text-disabled: #9ca3af;
+
+  --toastify-color-light: var(--text-default);
+  --toastify-color-dark: var(--text-default);
+  --toastify-color-info: var(--info);
+  --toastify-color-success: var(--success);
+  --toastify-color-warning: var(--warning);
+  --toastify-color-error: var(--error);
+  --toastify-text-color-light: #0a0c1a;
+  --toastify-text-color-dark: #e6e7f0;
+  --toastify-color-progress-light: var(--primary);
+  --toastify-color-progress-dark: var(--primary);
 }

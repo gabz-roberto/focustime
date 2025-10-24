@@ -8,6 +8,7 @@ import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { handleNextCycle } from "../../utils/handleNextCycle";
 import { handleNextCycleType } from "../../utils/handleNextCycleType";
 import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
+import { toastfyAdapter } from "../../adapters/toastfyAdapter";
 
 const MainForm = () => {
   const [taskName, setTaskName] = useState("");
@@ -48,10 +49,12 @@ const MainForm = () => {
   const handleCreateNewTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    toastfyAdapter.dismiss();
+
     const formattedTaskName = taskName.trim();
 
     if (!formattedTaskName) {
-      alert("O nome da tarefa não pode ser vazio.");
+      toastfyAdapter.warning("O nome da tarefa não pode ser vazio.");
       setTaskName("");
       return;
     }
@@ -67,14 +70,18 @@ const MainForm = () => {
     };
 
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
+
+    toastfyAdapter.success("Tarefa iniciada.");
   };
 
   const handleStopTask = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.preventDefault();
+    toastfyAdapter.dismiss();
 
     dispatch({ type: TaskActionTypes.STOP_TASK });
+    toastfyAdapter.error("Tarefa interrompida.");
   };
 
   return (
