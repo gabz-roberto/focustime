@@ -8,6 +8,7 @@ import {
 import styles from "./Menu.module.css";
 import "../../styles/theme.css";
 import { useEffect, useState } from "react";
+import RouterLink from "../RouterLink";
 
 type AvailableThemes = "light" | "dark";
 
@@ -38,31 +39,31 @@ export const Menu = () => {
 
   return (
     <nav className={styles.menu}>
-      <a
-        href='#'
+      <RouterLink
+        href='/'
         className={styles.menuLink}
         aria-label='Início'
         title='Início'
       >
         <HouseIcon size={30} />
-      </a>
-      <a
+      </RouterLink>
+      <RouterLink
         href='#'
         className={styles.menuLink}
         aria-label='Histórico'
         title='Histórico'
       >
         <HistoryIcon size={30} />
-      </a>
-      <a
+      </RouterLink>
+      <RouterLink
         href='#'
         className={styles.menuLink}
         aria-label='Opções'
         title='Opções'
       >
         <SettingsIcon size={30} />
-      </a>
-      <a
+      </RouterLink>
+      <RouterLink
         href='#'
         className={styles.menuLink}
         aria-label='Alterar tema'
@@ -70,7 +71,7 @@ export const Menu = () => {
         onClick={handleThemeChange}
       >
         {theme === "dark" ? <SunIcon size={30} /> : <MoonIcon size={30} />}
-      </a>
+      </RouterLink>
     </nav>
   );
 };

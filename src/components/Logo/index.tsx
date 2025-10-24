@@ -1,15 +1,16 @@
 import { Hourglass } from "lucide-react";
 import styles from "./Logo.module.css";
+import RouterLink from "../RouterLink";
 
 export const Logo = () => {
   return (
     <div className={styles.logo}>
-      <a href='#' className={styles.logoLink}>
-        <Hourglass size={60}/>
+      <RouterLink href='/' className={styles.logoLink}>
+        <Hourglass size={60} />
         <span>
           Focus<strong>Mind</strong>
         </span>
-      </a>
+      </RouterLink>
     </div>
   );
 };
