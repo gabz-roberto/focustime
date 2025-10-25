@@ -69,7 +69,6 @@ export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
       console.log("Carregando audio");
       playBeepRef.current = loadAudio();
     } else {
-      console.log("Finalizando audio");
       playBeepRef.current = null;
     }
   }, [state.activeTask]);
