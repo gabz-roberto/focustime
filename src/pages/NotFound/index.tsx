@@ -22,7 +22,7 @@ const NotFound = () => {
                 🏠 <RouterLink href='/'>Início</RouterLink>
               </li>
               <li>
-                ⚙️ <RouterLink href='/settings'>Configurações</RouterLink>
+                ⚙️ <RouterLink href='/settings/'>Configurações</RouterLink>
               </li>
             </ul>
             <h2>😅 404 — Página não encontrada</h2>

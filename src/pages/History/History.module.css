@@ -35,3 +35,8 @@
 .responsiveTable td {
   background-color: var(--gray-800);
 }
+
+.noTasks {
+  font-size: 1.8rem;
+  text-align: center;
+}

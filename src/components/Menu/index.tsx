@@ -56,7 +56,7 @@ export const Menu = () => {
         <HistoryIcon size={30} />
       </RouterLink>
       <RouterLink
-        href='#'
+        href='/settings/'
         className={styles.menuLink}
         aria-label='Opções'
         title='Opções'
