@@ -8,3 +8,4 @@ export const toastfyAdapter = {
   info: (msg: string) => toast.info(msg),
   dismiss: () => toast.dismiss(),
 };
+//
