@@ -9,10 +9,15 @@ import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { formatDate } from "../../utils/formateDate";
 import { getTaskStatus } from "../../utils/getTaskStatus";
 import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
+import { useEffect } from "react";
 
 const History = () => {
   const { state, dispatch } = useTaskContext();
   const checkTasks = state.tasks.length > 0;
+
+  useEffect(() => {
+    document.title = "Histórico | FocusMind";
+  }, []);
 
   const sortedTasks = [...state.tasks].sort((a, b) => {
     return b.startDate - a.startDate;

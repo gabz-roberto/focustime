@@ -4,8 +4,13 @@ import Generic from "../../components/Generic";
 import { Heading } from "../../components/Heading";
 
 import styles from "./About.module.css";
+import { useEffect } from "react";
 
 const About = () => {
+  useEffect(() => {
+    document.title = "Sobre o Pomodoro | FocusMind";
+  }, []);
+
   return (
     <MainTemplate>
       <Container>

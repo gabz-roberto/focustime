@@ -4,8 +4,13 @@ import { Heading } from "../../components/Heading";
 import { MainTemplate } from "../../templates/MainTemplate";
 import styles from "./NotFound.module.css";
 import RouterLink from "../../components/RouterLink";
+import { useEffect } from "react";
 
 const NotFound = () => {
+  useEffect(() => {
+    document.title = "404 — Página não encontrada";
+  }, []);
+
   return (
     <MainTemplate>
       <Container>

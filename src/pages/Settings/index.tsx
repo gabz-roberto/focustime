@@ -6,12 +6,17 @@ import styles from "./Settings.module.css";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { SaveIcon } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { toastfyAdapter } from "../../adapters/toastfyAdapter";
+import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
 
 const Settings = () => {
-  const { state } = useTaskContext();
+  const { state, dispatch } = useTaskContext();
+
+  useEffect(() => {
+    document.title = "Configurações | FocusMind";
+  }, []);
 
   const workTimeInput = useRef<HTMLInputElement>(null);
   const shortBreakTimeInput = useRef<HTMLInputElement>(null);
@@ -35,7 +40,7 @@ const Settings = () => {
       return;
     }
 
-    if (workTime < 1 || workTime >= 90) {
+    if (workTime < 1 || workTime > 90) {
       toastfyAdapter.error("Informe valores entre 1 e 90 para FOCO");
       return;
     }
@@ -50,7 +55,11 @@ const Settings = () => {
       return;
     }
 
-    console.log(workTime, shortBreakTime, longBreakTime);
+    dispatch({
+      type: TaskActionTypes.CHANGE_SETTINGS,
+      payload: { workTime, shortBreakTime, longBreakTime },
+    });
+    toastfyAdapter.success("Configurações salvas");
   };
 
   return (
