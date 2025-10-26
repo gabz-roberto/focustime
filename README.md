@@ -1,6 +1,6 @@
 # FocusTime 🕒 - Sistema Pomodoro & Gestão de Tarefas
 
-> **STATUS: EM DESENVOLVIMENTO**
+> **STATUS: CONCLUÍDO**
 
 FocusTime é um sistema de produtividade pessoal que combina a técnica Pomodoro
 com a gestão de tarefas. O projeto nasceu da necessidade pessoal de uma
